@@ -12,7 +12,8 @@ func (j *DateDTO) UnmarshalJSON(b []byte) error {
 	s := strings.Trim(string(b), "\"")
 	t, err := time.Parse("2006-01-02", s)
 	if err != nil {
-		return err
+		*j = DateDTO(time.Time{})
+		return nil
 	}
 	*j = DateDTO(t)
 	return nil
